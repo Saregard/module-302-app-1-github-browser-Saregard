@@ -25,10 +25,10 @@ class MainActivity : AppCompatActivity(), TextView.OnEditorActionListener {
     }
 
     override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
-        return if (v == editTextUsername){
-            Toast.makeText(this,"Click", Toast.LENGTH_LONG)
-             true
-        }else {
+        return if (v == editTextUsername) {
+            Toast.makeText(this, "Click", Toast.LENGTH_LONG)
+            true
+        } else {
             false
         }
     }
