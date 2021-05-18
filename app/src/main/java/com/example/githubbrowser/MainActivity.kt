@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity(), TextView.OnEditorActionListener {
 
             if(username.isEmpty() || username.isBlank()) {
                 editTextUsername?.error = getString(R.string.username_cannot_be_empty)
+
             }else {
                 imm?.hideSoftInputFromWindow(editTextUsername?.windowToken, 0)
                 progressBar?.visibility = View.VISIBLE
