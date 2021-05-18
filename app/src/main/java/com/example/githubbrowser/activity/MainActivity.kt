@@ -62,7 +62,13 @@ class MainActivity : AppCompatActivity(), TextView.OnEditorActionListener {
             .getRepositoriesForUser(username)
             .enqueue(object: Callback<List<Repository>>{
                 override fun onResponse(call: Call<List<Repository>>, response: Response<List<Repository>>) {
+
+                    progressBar?.visibility = View.INVISIBLE
+
                     if (response.isSuccessful){
+
+                        val listOfRepos = response.body() as? ArrayList<Repository>
+
                     }else {
                         val message = when(response.code()) {
                             500 -> R.string.internal_server_error
