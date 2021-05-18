@@ -3,12 +3,14 @@ package com.example.githubbrowser.activity
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import com.example.githubbrowser.R
 import com.example.githubbrowser.backend.RetrofitClient
 import com.example.githubbrowser.model.Repository
@@ -59,18 +61,33 @@ class MainActivity : AppCompatActivity(), TextView.OnEditorActionListener {
             .instance
             .getRepositoriesForUser(username)
             .enqueue(object: Callback<List<Repository>>{
-                
-                override fun onResponse(
-                    call: Call<List<Repository>>,
-                    response: Response<List<Repository>>
-                ) {
-                    TODO("Not yet implemented")
+
+                override fun onResponse(call: Call<List<Repository>>, response: Response<List<Repository>>) {
+                    if (response.isSuccessful){
+                    }else {
+                        val message = when(response.code()) {
+                            500 -> R.string.internal_server_error
+                            401 -> R.string.unauthorized
+                            403 -> R.string.forbidden
+                            404 -> R.string.user_not_found
+                            else -> R.string.try_another_user
+                        }
+                        Toast.makeText(this@MainActivity, message, Toast.LENGTH_LONG).show()
+                        Log.e(TAG, getString(message))
+
+
+                    }
+
                 }
 
                 override fun onFailure(call: Call<List<Repository>>, t: Throwable) {
-                    TODO("Not yet implemented")
+                    Log.e(TAG, "Error getting repos: ${t.localizedMessage}")
+                    Toast.makeText(this@MainActivity, R.string.unable_to_get_repo, Toast.LENGTH_LONG).show()
                 }
             })
 
+    }
+    companion object {
+        private val TAG = MainActivity::class.java.simpleName
     }
 }
