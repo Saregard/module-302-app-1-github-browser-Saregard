@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">GitHub Browser</string>
     <string name="enter_a_github_username">Enter a GitHub username</string>
+    <string name="username_cannot_be_empty">Username cannot be empty</string>
 </resources>
