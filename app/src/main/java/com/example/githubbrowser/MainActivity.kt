@@ -27,9 +27,14 @@ class MainActivity : AppCompatActivity(), TextView.OnEditorActionListener {
     override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
         return if (v == editTextUsername) {
 
-            val username = editTextUsername?.text?.toString()
-            
+            val username = editTextUsername?.text?.trim().toString()
 
+            if(username.isEmpty() || username.isBlank()) {
+                editTextUsername?.error = "Username cannot be empty"
+
+            }else {
+
+            }
 
             true
         } else {
