@@ -3,6 +3,7 @@ package com.example.githubbrowser
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.KeyEvent
+import android.view.View
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -30,15 +31,18 @@ class MainActivity : AppCompatActivity(), TextView.OnEditorActionListener {
             val username = editTextUsername?.text?.trim().toString()
 
             if(username.isEmpty() || username.isBlank()) {
-                editTextUsername?.error = "Username cannot be empty"
-
+                editTextUsername?.error = getString(R.string.username_cannot_be_empty)
             }else {
-
+                progressBar?.visibility = View.VISIBLE
+                getRepositoriesForUsername(username)
             }
-
             true
         } else {
             false
         }
+    }
+
+    private fun getRepositoriesForUsername(username: String){
+
     }
 }
