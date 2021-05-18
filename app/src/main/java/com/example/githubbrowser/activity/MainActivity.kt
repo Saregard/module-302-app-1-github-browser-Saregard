@@ -10,6 +10,11 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.TextView
 import com.example.githubbrowser.R
+import com.example.githubbrowser.backend.RetrofitClient
+import com.example.githubbrowser.model.Repository
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity(), TextView.OnEditorActionListener {
 
@@ -50,6 +55,22 @@ class MainActivity : AppCompatActivity(), TextView.OnEditorActionListener {
     }
 
     private fun getRepositoriesForUsername(username: String){
+        RetrofitClient
+            .instance
+            .getRepositoriesForUser(username)
+            .enqueue(object: Callback<List<Repository>>{
+                
+                override fun onResponse(
+                    call: Call<List<Repository>>,
+                    response: Response<List<Repository>>
+                ) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onFailure(call: Call<List<Repository>>, t: Throwable) {
+                    TODO("Not yet implemented")
+                }
+            })
 
     }
 }
