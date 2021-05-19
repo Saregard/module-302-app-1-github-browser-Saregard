@@ -69,6 +69,7 @@ class MainActivity : AppCompatActivity(), TextView.OnEditorActionListener {
 
                         val listOfRepos = response.body() as? ArrayList<Repository>
 
+
                     }else {
                         val message = when(response.code()) {
                             500 -> R.string.internal_server_error
