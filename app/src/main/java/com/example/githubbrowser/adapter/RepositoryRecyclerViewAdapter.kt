@@ -9,7 +9,19 @@ import com.example.githubbrowser.R
 import com.example.githubbrowser.model.Repository
 import kotlinx.android.synthetic.main.layout_recycler_view_repository.view.*
 
-class RepositoryRecyclerViewAdapter {
+class RepositoryRecyclerViewAdapter(private val listOfRepos: ArrayList<Repository>):
+    RecyclerView.Adapter<RepositoryRecyclerViewAdapter.ViewHolder>() {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder.create(parent)
+    }
+    override fun getItemCount(): Int {
+        return listOfRepos.size
+    }
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        return holder.bind(listOfRepos[position])
+    }
+
 
 
 
