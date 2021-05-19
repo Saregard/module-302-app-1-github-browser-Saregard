@@ -1,6 +1,8 @@
 package com.example.githubbrowser.adapter
 
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.githubbrowser.R
@@ -26,6 +28,13 @@ class RepositoryRecyclerViewAdapter {
             textViewPrivacy?.setText(privacyType)
         }
 
+        companion object {
+            fun create(parent: ViewGroup): ViewHolder {
+                val view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.layout_recycler_view_repository, parent, false)
+                return ViewHolder(view)
+            }
+        }
 
 
 
