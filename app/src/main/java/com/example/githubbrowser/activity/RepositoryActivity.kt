@@ -14,10 +14,10 @@ class RepositoryActivity : AppCompatActivity() {
 
         val listOfRepos = intent?.getParcelableArrayListExtra<Repository>(KEY_REPOSITORY_DATA)
         listOfRepos?.let {
-            val numberOfRepositories = it.size
 
-            val textViewNumbersOfRepos = findViewById<TextView>(R.id.textViewNumberOfRepos)
-            textViewNumbersOfRepos?.text =
+            val numberOfRepositories = getString(R.string.number_of_repos, it.size)
+
+            findViewById<TextView>(R.id.textViewNumberOfRepos)?.text = numberOfRepositories
         }
     }
     companion object{
