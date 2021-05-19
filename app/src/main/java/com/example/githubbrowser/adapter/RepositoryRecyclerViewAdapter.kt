@@ -19,7 +19,11 @@ class RepositoryRecyclerViewAdapter {
         fun bind (repository: Repository) {
             textViewRepoName?.text = repository.name
             textViewLicence?.text = repository.license
-            
+            val privacyType = when(repository.private){
+                true -> R.string.private_repo
+                else -> R.string.public_repo
+            }
+            textViewPrivacy?.setText(privacyType)
         }
 
 
