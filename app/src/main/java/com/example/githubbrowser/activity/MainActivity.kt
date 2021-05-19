@@ -1,6 +1,7 @@
 package com.example.githubbrowser.activity
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -68,6 +69,12 @@ class MainActivity : AppCompatActivity(), TextView.OnEditorActionListener {
                     if (response.isSuccessful){
 
                         val listOfRepos = response.body() as? ArrayList<Repository>
+
+                        listOfRepos?.let {
+                            val intent = Intent(this@MainActivity, RepositoryActivity::class.java)
+                            intent.putParcelableArrayListExtra(RepositoryActivity.KEY_REPOSITORY_DATA, it)
+                            startActivity(intent)
+                        }
 
 
                     }else {
