@@ -96,7 +96,7 @@ data class Repository(
     @SerializedName("languages_url")
     val languagesUrl: String? = "",
     @SerializedName("license")
-    val license: String? = "",
+    val license: License? = License(),
     @SerializedName("merges_url")
     val mergesUrl: String? = "",
     @SerializedName("milestones_url")
