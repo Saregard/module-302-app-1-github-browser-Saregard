@@ -1,6 +1,5 @@
 package com.example.githubbrowser.activity
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
@@ -17,20 +16,15 @@ class RepositoryActivity : AppCompatActivity() {
 
         val listOfRepos = intent?.getParcelableArrayListExtra<Repository>(KEY_REPOSITORY_DATA)
         listOfRepos?.let {
-
             val numberOfRepositories = getString(R.string.number_of_repos, it.size)
-
             findViewById<TextView>(R.id.textViewNumberOfRepos)?.text = numberOfRepositories
-
             showRepos(it)
         }
     }
-    private fun showRepos(listOfRepositories: ArrayList<Repository>){
 
+    private fun showRepos(listOfRepositories: ArrayList<Repository>) {
         val recyclerViewAdapter = RepositoryRecyclerViewAdapter(listOfRepositories)
-
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-
         recyclerView?.apply {
             adapter = recyclerViewAdapter
             setHasFixedSize(true)
@@ -38,7 +32,7 @@ class RepositoryActivity : AppCompatActivity() {
         }
     }
 
-    companion object{
+    companion object {
         const val KEY_REPOSITORY_DATA = "keyRepositoryData"
     }
 }

@@ -7,33 +7,31 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.githubbrowser.R
 import com.example.githubbrowser.model.Repository
-import kotlinx.android.synthetic.main.layout_recycler_view_repository.view.*
 
-class RepositoryRecyclerViewAdapter(private val listOfRepos: ArrayList<Repository>):
+class RepositoryRecyclerViewAdapter(private val listOfRepos: ArrayList<Repository>) :
     RecyclerView.Adapter<RepositoryRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.create(parent)
     }
+
     override fun getItemCount(): Int {
         return listOfRepos.size
     }
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         return holder.bind(listOfRepos[position])
     }
 
-
-
-
-    class ViewHolder(view: View): RecyclerView.ViewHolder(view){
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private var textViewRepoName = view.findViewById<TextView>(R.id.textViewRepoName)
         private var textViewPrivacy = view.findViewById<TextView>(R.id.textViewPrivacy)
         private var textViewLicence = view.findViewById<TextView>(R.id.textViewLicence)
 
-        fun bind (repository: Repository) {
+        fun bind(repository: Repository) {
             textViewRepoName?.text = repository.name
             textViewLicence?.text = repository.license?.name
-            val privacyType = when(repository.private){
+            val privacyType = when (repository.private) {
                 true -> R.string.private_repo
                 else -> R.string.public_repo
             }
@@ -47,8 +45,5 @@ class RepositoryRecyclerViewAdapter(private val listOfRepos: ArrayList<Repositor
                 return ViewHolder(view)
             }
         }
-
-
-
     }
 }
